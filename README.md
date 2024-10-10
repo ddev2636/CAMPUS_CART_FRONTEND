@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# **Campus Cart**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Campus Cart is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application designed to create a trusted and localized marketplace within a college campus. The platform allows students to buy and sell used items such as books, gadgets, and other essentials efficiently and securely.
 
-## Available Scripts
+## **Features**
 
-In the project directory, you can run:
+- **User Authentication**: Secure login and registration using JWT tokens and HTTP-only cookies.  
+- **Product Listings**: Students can list, search, and purchase items with ease.  
+- **File Uploads**: Firebase is used for handling image uploads in a simple and scalable manner.  
+- **Microservices Architecture (Mimicked)**: The app is structured to follow a microservice-like pattern, featuring: **Authentication Service** for user registration, login, and token issuance; and **Product Service** for handling product listings and related operations.  
+- **Deployment**: Containerized using Docker and deployed on AWS EC2 with CI/CD managed via GitHub Actions.  
+- **Security**: JWT tokens are securely stored in HTTP-only cookies to protect against XSS attacks.
 
-### `npm start`
+## **Tech Stack**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React.js  
+- **Backend**: Node.js, Express.js  
+- **Database**: MongoDB Atlas (cloud)  
+- **Authentication**: JWT and HTTP-only cookies  
+- **File Storage**: Firebase for image uploads  
+- **Deployment**: Docker, Docker Compose, AWS EC2, GitHub Actions  
+- **Containerization**: Docker for service management  
+- **DevOps**: Docker Hub, GitHub Actions for CI/CD automation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Architecture Overview**
 
-### `npm test`
+Campus Cart follows a microservice-like architecture designed for modularity and scalability. This approach helps simulate a real-world microservices setup, providing flexibility and independent deployment of services: **Authentication Service** manages user operations such as registration and login, and issues JWT tokens stored in HTTP-only cookies for security; **Product Service** manages product-related functionalities like creating listings and viewing available items.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Getting Started**
 
-### `npm run build`
+### **Prerequisites**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure the following software is installed: Node.js (v14 or higher), Docker and Docker Compose, MongoDB Atlas account and cluster, Firebase account for file storage, and AWS account for deployment (EC2 instance setup).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Installation**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:  
+   `git clone https://github.com/your-username/campus-cart.git`
+   
+2. Navigate to the project directory:  
+   `cd campus-cart`
+   
+3. Install dependencies for each service:  
+   `cd authentication-service && npm install`  
+   `cd ../product-service && npm install`
+   
+4. Environment Variables:  
+   Create `.env` files for both services based on `.env.example` files found in each service’s folder. Add the following environment variables:  
 
-### `npm run eject`
+   - **Authentication Service (`authentication-service/.env`)**:  
+     `MONGO_URI=your-mongodb-connection-string`  
+     `JWT_SECRET=your-jwt-secret`  
+   
+   - **Product Service (`product-service/.env`)**:  
+     `MONGO_URI=your-mongodb-connection-string`  
+     `JWT_SECRET=your-jwt-secret`  
+     `FIREBASE_CONFIG=your-firebase-config`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Running Locally**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ensure MongoDB Atlas is set up and the connection string is added to your environment variables. Set up Firebase for file uploads and update the configuration in the `.env` file of the product service. Run the services locally using Docker Compose:  
+   `docker-compose -f docker-compose.dev.yml up --build`  
+Access the application in your browser:  
+   - **Frontend**: [http://localhost:3000](http://localhost:3000)  
+   - **API Services**:  
+     - Authentication: [http://localhost:5001](http://localhost:5001)  
+     - Product Service: [http://localhost:5000](http://localhost:5000)
